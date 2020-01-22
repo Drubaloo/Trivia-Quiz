@@ -18,39 +18,39 @@ var questions = [
         ]
     },
     {
-        question: `What super villain once broke Batman's back, leaving him crippled and wheelchair-bound?`,
+        question: `Who is credited with creating Batman?`,
         answers: [
-            {text: `Bane`, correct: true},
-            {text: `Joker`, correct: false},
-            {text: `Killer Croc`, correct: false},
-            {text: `The Riddler`, correct: false},
+            {text: `Stan Lee`, correct: false},
+            {text: `Joe Shuster`, correct: false},
+            {text: `Bob Kane`, correct: true},
+            {text: `Jack Kirby`, correct: false},
         ]
     },
     {
-        question: `What super villain once broke Batman's back, leaving him crippled and wheelchair-bound?`,
+        question: `What Batman villain formerly worked as a zoologist?`,
         answers: [
-            {text: `Bane`, correct: true},
-            {text: `Joker`, correct: false},
+            {text: `The Penguin`, correct: false},
+            {text: `Poison Ivy`, correct: false},
             {text: `Killer Croc`, correct: false},
-            {text: `The Riddler`, correct: false},
+            {text: `ManBat`, correct: true},
         ]
     },
     {
-        question: `What super villain once broke Batman's back, leaving him crippled and wheelchair-bound?`,
+        question: `The original Batgirl was related to what familiar Batman character?`,
         answers: [
-            {text: `Bane`, correct: true},
-            {text: `Joker`, correct: false},
-            {text: `Killer Croc`, correct: false},
+            {text: `Alfred`, correct: false},
             {text: `The Riddler`, correct: false},
+            {text: `Jim Gordon`, correct: true},
+            {text: `The Joker`, correct: false},
         ]
     },
     {
-        question: `What super villain once broke Batman's back, leaving him crippled and wheelchair-bound?`,
+        question: `Which of these Bat-villains was introduced first?`,
         answers: [
-            {text: `Bane`, correct: true},
-            {text: `Joker`, correct: false},
-            {text: `Killer Croc`, correct: false},
+            {text: `Catwoman`, correct: true},
             {text: `The Riddler`, correct: false},
+            {text: `Mr.Freeze`, correct: false},
+            {text: `The Penguin`, correct: false},
         ]
     },
 
