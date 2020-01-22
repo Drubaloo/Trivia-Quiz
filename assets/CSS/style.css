@@ -17,15 +17,15 @@
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: hsl(var(--hue), 100%, 20%);
+    background-image: url(../images/main.jpg);
   }
   
   body.correct {
-    --hue: var(--hue-correct);
+    background-image: url(../images/correct.jpg);
   }
   
   body.wrong {
-    --hue: var(--hue-wrong);
+    background-image: url(../images/wrong.jpg);
   }
   
   .container {

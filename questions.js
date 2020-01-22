@@ -38,9 +38,9 @@ var questions = [
     {
         question: `The original Batgirl was related to what familiar Batman character?`,
         answers: [
-            {text: `Alfred`, correct: false},
+            {text: `Batwoman`, correct: true},
             {text: `The Riddler`, correct: false},
-            {text: `Jim Gordon`, correct: true},
+            {text: `Jim Gordon`, correct: false},
             {text: `The Joker`, correct: false},
         ]
     },
