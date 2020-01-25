@@ -8,17 +8,23 @@ var answerBtnEL = document.querySelector(`#answer-buttons`)
 var scoreElem = document.querySelector(`#your-score`)
 var timeUpEL = document.querySelector(`#time-up`)
 var timeLeftEL = document.querySelector(`#time-left`)
+var highScoreEL = document.querySelector(`#high-score`)
 
-var timer = setInterval(countdown, 60000)
+var timer = 60
+
+timeLeftEL = timer
 
 var scoreEL = 0
 
-timeLeftEL = scoreEL
+
+highScoreEL.innerHTML = `Your last score is ` + localStorage.getItem(highScoreEL) + ` points!`
+
 //Question Shuffler
 var shuffleQuestions, currentQuestionIndex = undefined
 
 //Game Start
 startButtonEL.addEventListener(`click`, start)
+startButtonEL.addEventListener(`click`, showTime)
 
 //continue
 nextButtonEl.addEventListener(`click`, () => {
@@ -28,28 +34,39 @@ nextButtonEl.addEventListener(`click`, () => {
 
 //start function
 function start(){
+    highScoreEL.classList.add(`hide`)
     startButtonEL.classList.add(`hide`)
     shuffleQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerEL.classList.remove(`hide`)
     nextQuestion()
-    timer
-    timeLeftEL.classList.remove(`hide`)
-    timeLeftEL.innerHTML = timer
-
+    setInterval(countdown, 60000)
+    showTime()
     
 }
 
-//countdown function
+//countdown function 
+timeLeftEL.innerHTML = timer
+
 function countdown(){
+    
     startButtonEL.classList.remove(`hide`)
     questionContainerEL.classList.add(`hide`)
     timeUpEL.classList.remove(`hide`)
     scoreElem.classList.remove(`hide`)
     scoreElem.innerHTML = `YOUR SCORE IS ` + scoreEL
+    localStorage.setItem(highScoreEL, scoreEL)
 }
 
-
+function showTime(){
+    timeLeftEL.classList.remove()
+    if (timer <= 60){
+        timeLeftEL.innerHTML = timer;
+        timer--} else if (timer = 0){
+            timer = 0
+            timeLeftEL.innerHTML = timer;
+        }
+    }
 
 
 //to the next quesiton
@@ -112,6 +129,8 @@ function setStatusClass(element, correct){
         element.classList.add(`wrong`)
     }
 }
+
+
 
 //clear the previous check
 
