@@ -5,13 +5,15 @@ var nextButtonEl = document.querySelector(`#next-btn`)
 var questionContainerEL = document.querySelector(`#question-container`)
 var questionEL = document.querySelector(`#question`)
 var answerBtnEL = document.querySelector(`#answer-buttons`)
-var scoreEL = document.querySelector(`#your-score`)
+var scoreElem = document.querySelector(`#your-score`)
 var timeUpEL = document.querySelector(`#time-up`)
 var timeLeftEL = document.querySelector(`#time-left`)
 
-scoreEL = 0
+var timer = setInterval(countdown, 60000)
 
+var scoreEL = 0
 
+timeLeftEL = scoreEL
 //Question Shuffler
 var shuffleQuestions, currentQuestionIndex = undefined
 
@@ -26,13 +28,16 @@ nextButtonEl.addEventListener(`click`, () => {
 
 //start function
 function start(){
-    
     startButtonEL.classList.add(`hide`)
     shuffleQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerEL.classList.remove(`hide`)
     nextQuestion()
-    setTimeout(countdown, 3000)
+    timer
+    timeLeftEL.classList.remove(`hide`)
+    timeLeftEL.innerHTML = timer
+
+    
 }
 
 //countdown function
@@ -40,29 +45,12 @@ function countdown(){
     startButtonEL.classList.remove(`hide`)
     questionContainerEL.classList.add(`hide`)
     timeUpEL.classList.remove(`hide`)
-    scoreEL.classList.remove(`hide`)
-
-    scoreEL.innerHTML = scoreEL
+    scoreElem.classList.remove(`hide`)
+    scoreElem.innerHTML = `YOUR SCORE IS ` + scoreEL
 }
 
-//view countdown function
-var sessionTimeout = countdown
 
-function displaySessionTimeout(){
-    timeLeftEL.innerText= sessionTimeout
 
-    sessionTimeout = sessionTimeout -1
-
-    if (sessionTimeout <= 10){
-        scoreEL + 1
-    } else if (sessionTimeout <= 20 ){
-        scoreEL + 2
-    } else if (sessionTimeout <= 30){
-        scoreEL + 3
-    } else {
-        scoreEL + 4
-    }
-}
 
 //to the next quesiton
 function nextQuestion(){
