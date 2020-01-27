@@ -9,22 +9,28 @@ var showScore = document.querySelector(`#your-score`)
 var timeUpEL = document.querySelector(`#time-up`)
 var timeLeftEL = document.querySelector(`#time-left`)
 var highScoreEL = document.querySelector(`#high-score`)
-var timeRem = 120
+var scoreNameEL = document.querySelector(`#score-name`)
+var champNameEL = document.querySelector(`#name-input`)
+var saveBtnEL = document.querySelector(`#save-btn`)
+var timeRem = 0
 
 
 
 
 var scoreEL = 0
 
+if (localStorage.getItem.highScoreEL != null) {
+    highScoreEL.innerHTML = `Your last score was ` + localStorage.getItem(highScoreEL) + ` points!`
+}
 
-highScoreEL.innerHTML = `Your last score was ` + localStorage.getItem(highScoreEL) + ` points!`
+console.log(localStorage)
 
 //Question Shuffler
 var shuffleQuestions, currentQuestionIndex = undefined
 
 //Game Start
 startButtonEL.addEventListener(`click`, start)
-startButtonEL.addEventListener(`click`, showTime)
+
 
 //continue
 nextButtonEl.addEventListener(`click`, () => {
@@ -35,9 +41,12 @@ nextButtonEl.addEventListener(`click`, () => {
 //start function
 function start() {
     highScoreEL.classList.add(`hide`)
+    saveBtnEL.classList.add(`hide`)
     timeUpEL.classList.add(`hide`)
     showScore.classList.add(`hide`)
     startButtonEL.classList.add(`hide`)
+    timeRem = 60
+    timeLeftEL.classList.remove(`hide`)
     shuffleQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerEL.classList.remove(`hide`)
@@ -57,18 +66,43 @@ function countdown() {
     timeUpEL.classList.remove(`hide`)
     showScore.classList.remove(`hide`)
     localStorage.setItem(highScoreEL, scoreEL)
-    
     showScore.innerHTML = `YOUR SCORE IS ` + scoreEL
+    scoreNameEL.classList.remove(`hide`)
+    saveBtnEL.classList.remove(`hide`)
+}
+
+//endgame function
+
+function endgame() {
+    timeRem = 0
+    startButtonEL.classList.remove(`hide`)
+    questionContainerEL.classList.add(`hide`)
+    timeUpEL.innerHTML = `GOOD JOB`
+    timeUpEL.classList.remove(`hide`)
+    showScore.classList.remove(`hide`)
+    showScore.innerHTML = `YOUR SCORE IS ` + scoreEL
+    scoreNameEL.classList.remove(`hide`)
+    saveBtnEL.classList.remove(`hide`)
+}
+
+function save() {
+    localStorage.setItem(champNameEL.value, scoreEL)
+    var block = document.createElement(`h1`)
+    for (i = 0; i < localStorage.length; i++) {
+        block.innerHTML = localStorage[i]
+        questionContainerEL.appendChild(block)
+        console.log(localStorage)
+    }
 }
 
 function showTime() {
     timeLeftEL.classList.remove(`hide`)
-    
+
     var timer = setInterval(function () {
 
         if (timeRem > 0) {
             timeRem--
-            timeLeftEL.innerHTML = timeRem + ` possible points for this question`
+            timeLeftEL.innerHTML = timeRem + ` Seconds left`
 
         } else {
             timeLeftEL.classList.add(`hide`)
@@ -120,11 +154,11 @@ function pickAnswer(e) {
     })
     if (shuffleQuestions.length > currentQuestionIndex + 1) {
         nextButtonEl.classList.remove(`hide`)
-        
+
     } else {
         startButtonEL.innerText = `Restart`
         startButtonEL.classList.remove(`hide`)
-        
+        endgame()
         clearTimeout()
     }
     nextButtonEl.classList.remove(`hide`)
