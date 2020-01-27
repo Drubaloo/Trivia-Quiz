@@ -14,6 +14,7 @@ var champNameEL = document.querySelector(`#name-input`)
 var saveBtnEL = document.querySelector(`#save-btn`)
 var timeRem = 0
 
+var names = []
 
 
 
@@ -88,11 +89,8 @@ function endgame() {
 function save() {
     localStorage.setItem(champNameEL.value, scoreEL)
     var block = document.createElement(`h1`)
-    for (i = 0; i < localStorage.length; i++) {
-        block.innerHTML = localStorage[i]
-        questionContainerEL.appendChild(block)
-        console.log(localStorage)
-    }
+    
+
 }
 
 function showTime() {
