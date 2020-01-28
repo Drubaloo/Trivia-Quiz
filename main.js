@@ -12,9 +12,11 @@ var highScoreEL = document.querySelector(`#high-score`)
 var scoreNameEL = document.querySelector(`#score-name`)
 var champNameEL = document.querySelector(`#name-input`)
 var saveBtnEL = document.querySelector(`#save-btn`)
+var scorePageEL = document.querySelector(`#high-score-list`)
+var listEL = document.querySelector(`#list`)
 var timeRem = 0
 
-var names = []
+
 
 
 
@@ -41,11 +43,15 @@ nextButtonEl.addEventListener(`click`, () => {
 
 //start function
 function start() {
+    scoreNameEL.classList.add(`hide`)
+    saveBtnEL.classList.add(`hide`)
     highScoreEL.classList.add(`hide`)
     saveBtnEL.classList.add(`hide`)
     timeUpEL.classList.add(`hide`)
     showScore.classList.add(`hide`)
     startButtonEL.classList.add(`hide`)
+    scorePageEL.classList.add(`hide`)
+    listEL.classList.add(`hide`)
     timeRem = 60
     timeLeftEL.classList.remove(`hide`)
     shuffleQuestions = questions.sort(() => Math.random() - .5)
@@ -70,6 +76,7 @@ function countdown() {
     showScore.innerHTML = `YOUR SCORE IS ` + scoreEL
     scoreNameEL.classList.remove(`hide`)
     saveBtnEL.classList.remove(`hide`)
+    champNameEL.classList.remove(`hide`)
 }
 
 //endgame function
@@ -84,14 +91,42 @@ function endgame() {
     showScore.innerHTML = `YOUR SCORE IS ` + scoreEL
     scoreNameEL.classList.remove(`hide`)
     saveBtnEL.classList.remove(`hide`)
+    champNameEL.classList.remove(`hide`)
 }
+
+//saves a name to the local storage
 
 function save() {
     localStorage.setItem(champNameEL.value, scoreEL)
-    var block = document.createElement(`h1`)
-    
+    highScoreEL.classList.remove(`hide`)
 
+    var block = document.createElement(`h1`)
+
+   
+    highScorePage()
 }
+
+//display scores from all players
+
+function highScorePage(){
+    scorePageEL.classList.remove(`hide`)
+    nextButtonEl.classList.add(`hide`)
+    timeUpEL.classList.add(`hide`)
+    showScore.classList.add(`hide`)
+    champNameEL.classList.add(`hide`)
+    scoreNameEL.classList.add(`hide`)
+    saveBtnEL.classList.add(`hide`)
+    listEL.classList.remove(`hide`)
+    
+    
+    for (var i = 0; i < localStorage.length; i++) {
+        listEL.innerHTML = localStorage.key(i) + ` ` + localStorage.getItem(localStorage.key(i)) + ` `
+
+
+    }
+}
+
+//shows the time
 
 function showTime() {
     timeLeftEL.classList.remove(`hide`)
