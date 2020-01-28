@@ -43,6 +43,8 @@ nextButtonEl.addEventListener(`click`, () => {
 
 //start function
 function start() {
+    scoreEL = 0
+    document.getElementById("list").innerHTML = ``
     scoreNameEL.classList.add(`hide`)
     saveBtnEL.classList.add(`hide`)
     highScoreEL.classList.add(`hide`)
@@ -120,7 +122,12 @@ function highScorePage(){
     
     
     for (var i = 0; i < localStorage.length; i++) {
-        listEL.innerHTML = localStorage.key(i) + ` ` + localStorage.getItem(localStorage.key(i)) + ` `
+        var block = document.createElement(`h2`)
+
+        block.className = `text-center`
+        block.innerHTML = `  ${localStorage.key(i)} ${localStorage.getItem(localStorage.key(i))}  `
+
+        document.getElementById(`list`).appendChild(block)
 
 
     }
